@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+    animation: flipTitle 2s;
+    padding: 30px 0 60px 0;
+    width: 80%;
+    flex-wrap: nowrap;
+}
+
+@keyframes flipTitle {
+    from{
+      transform: rotateX(90deg);
+    }
+    to{
+      transform: rotateX(0deg);
+    }  
+}
+.title {
+    text-align: center;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 30px;
+    color: black;
+}
+
+.content-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;     
+}
+
+.text-area {
+    outline: none;
+    resize: none;
+    overflow: auto;
+    border-radius: 10px;
+    font-size: 16px;   
+    padding: 10px;
+    margin: 30px;
+}
+
+.grow-one{
+ flex-grow: 1;
+}
+
+.grow-two {
+    flex-grow: 2;
+}
+
+.grow-three {
+    flex-grow: 1;
+}
+
+.keyBoard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.key{
+    width: 70px;
+    background-color: #505050;
+    color: #fff;
+    grid-area: t1;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    border: none;
+    text-transform: uppercase;
+}
+
+.play-button{    
+	background-color:#3CB371;
+	border-radius:6px;	
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:16px 24px;
+	text-decoration:none;	
+    margin: 30px;
+}
+.play-button:hover {	
+    transition: 0.5s;
+	background-color:#20B2AA;
+}
+.play-button:active {
+	position:relative;
+	top:1px;
+}
