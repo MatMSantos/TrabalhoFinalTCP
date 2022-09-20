@@ -7,7 +7,7 @@ type TemplateState = {
 }
 
 export default class Template extends React.Component {
-  state:TemplateState = {text:'', instruction:''}
+  state:TemplateState = {text:'', instruction:'Instruções dos comandos'}
 
   keys_top = [
     {
@@ -129,6 +129,23 @@ export default class Template extends React.Component {
     this.setState({instruction: instruction})
   }
 
+  handleNewFile = (event:React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+
+    const file = event.target && event.target.files && event.target.files[0]
+
+    if(file) {
+      const reader = new FileReader();
+
+      reader.onloadend= () => {
+        this.setState({text: (reader.result as string)})
+      }
+
+      reader.readAsText(file);
+    }
+
+  }
+
   render(){
     const { text, instruction } = this.state;
 
@@ -139,30 +156,37 @@ export default class Template extends React.Component {
           <div className='sub-title'>Gerador de áudio baseado em texto</div>
         </div>
         <div className='content-container'>
-          <textarea
+          <div
             className='text-area grow-one'
-            value={instruction}
-            // onChange={this.handleChange}
-            placeholder="Instruções dos botões"
-            style={{ width: '10px', height: '300px' }}
-          />
+            style={{ height: '300px' }}
+          >
+            {instruction}
+          </div>
           <textarea
             className='text-area grow-two'
             value={text}
             onChange={this.handleChange}
             placeholder="Escreva a sua melodia aqui 2"
-            style={{ width: '30px', height: '300px' }}
+            style={{ height: '300px' }}
           />
-          <textarea
+          <div
             className='text-area grow-three'
-            value={instruction}
-            // onChange={this.handleChange}
-            placeholder="Aqui vai ser o componente de enviar arquivo"
-            style={{ width: '10px', height: '300px' }}
-          />
+            style={{ height: '300px' }}
+          >
+            <input
+              type="file"
+              className=""
+              onChange={this.handleNewFile}
+            />
+          </div>
         </div>
         <div className='keyBoard'>
-          {this.keys_top.map((key:any) => {
+          {this.keys_top.map((key:{
+            id: number
+            instruction: string
+            action: string
+            text: string
+          }) => {
             return (
               <button
                 className='key'
@@ -175,7 +199,12 @@ export default class Template extends React.Component {
           })}
         </div>
         <div className='keyBoard'>
-          {this.keys_bottom.map((key:any) => {
+          {this.keys_bottom.map((key:{
+            id: number
+            instruction: string
+            action: string
+            text: string
+          }) => {
             return (
               <button
                 className='key'
