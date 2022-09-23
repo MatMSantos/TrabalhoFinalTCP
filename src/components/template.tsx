@@ -101,7 +101,7 @@ export default class Template extends React.Component {
         id: 7,
         text: 'nl',
         instruction: 'a tecla nl faz isso',
-        action: 'nl'
+        action: '\n'
     },
     {
         id: 8,
@@ -166,7 +166,7 @@ export default class Template extends React.Component {
             className='text-area grow-two'
             value={text}
             onChange={this.handleChange}
-            placeholder="Escreva a sua melodia aqui 2"
+            placeholder="Escreva a sua melodia aqui"
             style={{ height: '300px' }}
           />
           <div
