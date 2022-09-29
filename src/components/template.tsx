@@ -175,11 +175,11 @@ export default class Template extends React.Component {
   ]
 
   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ text: event.target.value })
+    this.setState({ userInputText: event.target.value })
   }
 
   handleText = (text: string) => {
-    this.setState({ text: text })
+    this.setState({ userInputText: text })
   }
 
   handleInstruction = (instruction: string) => {
@@ -195,7 +195,7 @@ export default class Template extends React.Component {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        this.setState({ text: (reader.result as string) })
+        this.setState({ userInputText: (reader.result as string) })
       }
 
       reader.readAsText(file);
