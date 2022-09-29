@@ -1,0 +1,8 @@
+// Pronto:
+    - App
+    - Parser
+    - Note
+
+// Falta:
+    - Lista de instrumentos + midiNumbers
+    - Player: play() precisa que as notas sejam tocadas uma após a outra ()

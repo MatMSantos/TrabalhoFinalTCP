@@ -1,5 +1,10 @@
 import React from "react";
 import '../styles/template.css'
+import Parser from '../classes/parser/index'
+import Player from '../classes/player/index'
+
+//@ts-ignore
+import MIDI from 'midi.js'
 
 type TemplateState = {
   text: string
@@ -148,6 +153,8 @@ export default class Template extends React.Component {
 
   render(){
     const { text, instruction } = this.state;
+    const parser = new Parser(text)
+    const player = new Player(this.props)
 
     return (
       <div className="container">
@@ -216,7 +223,9 @@ export default class Template extends React.Component {
             );
           })}
         </div>
-        <div className='play-button'>Play!</div>
+        <div
+          className='play-button'
+          onClick={() => player.play(parser.readCommands())}>Play!</div>
       </div>
     )
   }
