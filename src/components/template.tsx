@@ -9,141 +9,148 @@ import MIDI from 'midi.js'
 type TemplateState = {
   text: string
   instruction: string
+  keyAction: string
 }
-
 export default class Template extends React.Component {
-  state:TemplateState = {text:'', instruction:'Instruções dos comandos'}
+  state: TemplateState = { text: '', instruction: 'Instruções dos comandos', keyAction: '' }
 
   keys_top = [
     {
-        id: 1,
-        text: 'a',
-        instruction: 'a tecla a faz isso',
-        action: 'a'
+      id: 1,
+      text: '!',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #114 (Agogo)',
+      action: '!'
     },
     {
-        id: 2,
-        text: 'b',
-        instruction: 'a tecla b faz isso',
-        action: 'b'
+      id: 2,
+      text: ',',
+      instruction: 'Trocar instrumento para o instrumento General MIDI #20 (Church Organ)',
+      action: ','
     },
     {
-        id: 3,
-        text: 'c',
-        instruction: 'a tecla c faz isso',
-        action: 'c'
+      id: 3,
+      text: '?',
+      instruction: 'Aumenta UMA oitava; Se não puder, aumentar, volta à oitava default (de início)',
+      action: '?'
     },
     {
-        id: 4,
-        text: 'd',
-        instruction: 'a tecla d faz isso',
-        action: 'd'
+      id: 4,
+      text: 'NL',
+      instruction: 'Troca o instrumento para o instrument General MIDI #15 (Tubular Bells)',
+      action: '\n'
     },
     {
-        id: 5,
-        text: 'e',
-        instruction: 'a tecla e faz isso',
-        action: 'e'
+      id: 5,
+      text: ';',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #76 (Pan Flute)',
+      action: ';'
     },
     {
-        id: 6,
-        text: 'f',
-        instruction: 'a tecla f faz isso',
-        action: 'f'
+      id: 6,
+      text: 'space',
+      instruction: 'Aumenta volume para o DOBRO do volume, Se não puder aumentar, volta ao volume default (de início)',
+      action: ' '
     },
     {
-        id: 7,
-        text: 'g',
-        instruction: 'a tecla g faz isso',
-        action: 'g'
+      id: 7,
+      text: 'Par',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #76 (Pan Flute)',
+      action: ';'
     },
     {
-        id: 8,
-        text: 'space',
-        instruction: 'a tecla space faz isso',
-        action: ' '
+      id: 8,
+      text: 'Impar',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #76 (Pan Flute)',
+      action: this.state.keyAction
     },
+    
   ]
 
   keys_bottom = [
     {
-        id: 1,
-        text: '+',
-        instruction: 'a tecla + faz isso',
-        action: '+'
+      id: 1,
+      text: 'A',
+      instruction: 'Reproduz a nota "Lá"',
+      action: 'A'
     },
     {
-        id: 2,
-        text: '-',
-        instruction: 'a tecla - faz isso',
-        action: '-'
+      id: 2,
+      text: 'B',
+      instruction: 'Reproduz a nota "Si"',
+      action: 'B'
     },
     {
-        id: 3,
-        text: 'rep',
-        instruction: 'a tecla rep faz isso',
-        action: 'rep'
+      id: 3,
+      text: 'C',
+      instruction: 'Reproduz a nota "Dó"',
+      action: 'C'
     },
     {
-        id: 4,
-        text: 'r+',
-        instruction: 'a tecla r+ faz isso',
-        action: 'r+'
+      id: 4,
+      text: 'D',
+      instruction: 'Reproduz a nota "Ré"',
+      action: 'D'
     },
     {
-        id: 5,
-        text: 'r-',
-        instruction: 'a tecla r- faz isso',
-        action: 'r-'
+      id: 5,
+      text: 'E',
+      instruction: 'Reproduz a nota "Mi"',
+      action: 'E'
     },
     {
-        id: 6,
-        text: '?',
-        instruction: 'a tecla ? faz isso',
-        action: '?'
+      id: 6,
+      text: 'F',
+      instruction: 'Reproduz a nota "Fá"',
+      action: 'F'
     },
     {
-        id: 7,
-        text: 'nl',
-        instruction: 'a tecla nl faz isso',
-        action: '\n'
+      id: 7,
+      text: 'G',
+      instruction: 'Reproduz a nota "Sol"',
+      action: 'G'
     },
     {
-        id: 8,
-        text: 'bpm+',
-        instruction: 'a tecla bpm+ faz isso',
-        action: 'bpm+'
+      id: 8,
+      text: 'I',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #114 (Harpsichord)',
+      action: 'I'
     },
     {
-        id: 9,
-        text: ';',
-        instruction: 'a tecla ; faz isso',
-        action: ';'
+      id: 9,
+      text: 'O',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #114 (Harpsichord)',
+      action: 'O'
     },
-  ]
+    {
+      id: 10,
+      text: 'U',
+      instruction: 'Troca o instrumento para o instrumento General MIDI #114 (Harpsichord)',
+      action: 'U'
+    },
+  ]  
 
-  handleChange = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({text: event.target.value})
+  handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.setState({ text: event.target.value })
   }
 
-  handleText = (text:string) => {
-    this.setState({text: text})
+  handleText = (text: string) => {
+    this.setState({ text: text })
   }
 
-  handleInstruction = (instruction:string) => {
-    this.setState({instruction: instruction})
+  handleInstruction = (instruction: string) => {
+    this.setState({ instruction: instruction })
   }
 
-  handleNewFile = (event:React.ChangeEvent<HTMLInputElement>) => {
+  handleNewFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
 
     const file = event.target && event.target.files && event.target.files[0]
 
-    if(file) {
+    if (file) {
       const reader = new FileReader();
 
-      reader.onloadend= () => {
-        this.setState({text: (reader.result as string)})
+      reader.onloadend = () => {
+        this.setState({ text: (reader.result as string) })
       }
 
       reader.readAsText(file);
@@ -151,7 +158,10 @@ export default class Template extends React.Component {
 
   }
 
-  render(){
+  pairGenerator = (min: number, max: number) => String(Math.floor(Math.random() * ((max - min) / 2 + 1)) * 2 + min)
+  oddGenerator = (min: number, max: number) => String((Math.floor(Math.random() * ((max - min) / 2 + 1)) * 2 + min) + 1)
+
+  render() {
     const { text, instruction } = this.state;
     const parser = new Parser(text)
     const player = new Player(this.props)
@@ -188,7 +198,7 @@ export default class Template extends React.Component {
           </div>
         </div>
         <div className='keyBoard'>
-          {this.keys_top.map((key:{
+          {this.keys_top.map((key: {
             id: number
             instruction: string
             action: string
@@ -198,15 +208,24 @@ export default class Template extends React.Component {
               <button
                 className='key'
                 key={key.id}
-                onMouseEnter={() => this.setState({instruction: key.instruction})}
-                onClick={() => this.setState({text: text.concat(key.action)})}>
+                onMouseEnter={() => this.setState({ instruction: key.instruction })}
+                onClick={() => {
+                  if (key.text === 'Par') {
+                    this.setState({ text: text.concat(this.pairGenerator(0, 10)) })
+                  } else if (key.text === 'Impar') {
+                    this.setState({ text: text.concat(this.oddGenerator(0, 10)) })
+                  } else {
+                    this.setState({ text: text.concat(key.action) })
+                  }
+                }}
+              >
                 {key.text}
               </button>
             );
           })}
         </div>
         <div className='keyBoard'>
-          {this.keys_bottom.map((key:{
+          {this.keys_bottom.map((key: {
             id: number
             instruction: string
             action: string
@@ -216,8 +235,8 @@ export default class Template extends React.Component {
               <button
                 className='key'
                 key={key.id}
-                onMouseEnter={() => this.setState({instruction:key.instruction})}
-                onClick={() => this.setState({text:text.concat(key.action)})}>
+                onMouseEnter={() => this.setState({ instruction: key.instruction })}
+                onClick={() => this.setState({ text: text.concat(key.action) })}>
                 {key.text}
               </button>
             );

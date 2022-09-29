@@ -44,37 +44,104 @@ export default class Player extends React.Component {
         31: "distortion_guitar",
         32: "guitar_harmonics",
         33: "acoustic_bass",
-        34: "electric_bass_finger"
-        35: "electric_bass_pick"
-        36:
-        37:
-        38:
-        39:
-        40:
-        41:
-        42:
-        43:
-        44:
-        45:
-        46:
-        47:
-        48:
-        49:
-        50:
-        51:
-        52:
-        53:
-        54:
-        55:
-        56:
-        57:
-        58:
-        59:
-        60:
-
+        34: "electric_bass_finger",
+        35: "electric_bass_pick",
+        36: "fretless_bass",
+        37: "slap_bass_1",
+        38: "slap_bass_2",
+        39: "synth_bass_1",
+        40: "synth_bass_2",
+        41: "violin",
+        42: "viola",
+        43: "cello",
+        44: "contrabass",
+        45: "tremolo_strings",
+        46: "pizzicato_strings",
+        47: "orchestral_harp",
+        48: "timpani",
+        49: "string_ensemble_1",
+        50: "string_ensemble_2",
+        51: "synth_string_1",
+        52: "synth_string_2",
+        53: "choir_aahs",
+        54: "voice_oohs",
+        //55:
+        56: "orchestra_hit",
+        57: "trumpet",
+        58: "trombone",
+        59: "tuba",
+        60: "muted_trumpet",
+        61: "french_horn",
+        62: "brass_section",
+        63: "synth_brass_1",
+        64: "synth_brass_2",
+        65: "soprano_sax",
+        66: "alto_sax",
+        67: "tenor_sax",
+        68: "baritone_sax",
+        69: "oboe",
+        70: "english_horn",
+        71: "bassoon",
+        72: "clarinet",
+        73: "piccolo",
+        74: "flute",
+        75: "recorder",
+        76: "pan_flute",
+        77: "blown_bottle",
+        78: "shakuhachi",
+        79: "whistle",
+        80: "ocarina",
+        81: "lead_1_square",
+        82: "lead_2_swatooth",
+        83: "lead_3_calliope",
+        84: "lead_4_chiff",
+        85: "lead_5_charang",
+        86: "lead_6_voice",
+        87: "lead_7_fifths",
+        88: "lead_8_square",
+        89: "pad_1_new_age",
+        90: "pad_2_warm",
+        91: "pad_3_polysynth",
+        92: "pad_4_choir",
+        93: "pad_5_bowed",
+        94: "pad_6_metalic",
+        95: "pad_7_halo",
+        96: "pad_8_sweep",
+        97: "fx_1_rain",
+        98: "fx_2_soundtrack",
+        99: "fx_3_crystal",
+        100: "fx_4_atmosphere",
+        101: "fx_5_brightness",
+        102: "fx_6_goblins",
+        103: "fx_7_echoes",
+        104: "fx_8_scifi",
+        105: "star",
+        106: "banjo",
+        107: "shamisen",
+        108: "koto",
+        109: "kalimba",
+        110: "bagpipe",
+        111: "fiddle",
+        112: "shanai",
+        113: "tinkle_bell",
+        114: "agogo",
+        115: "steel_drums",
+        116: "woodblock",
+        117: "taiko_drum",
+        118: "melodic_tom",
+        119: "synth_drum",
+        120: "reverse_cymbal",
+        121: "guitar_fret",
+        122: "breath",
+        123: "seashore",
+        124: "bird_tweet",
+        125: "telephone_ring",
+        126: "helicopter",
+        127: "applause",
+        128: "gunshot",
     }
 
-    initialVolume:number = 20;
+    initialVolume:number = 100;
     // Começamos na oitava 
     initialOctave:number = 4;
     // Em General MIDI, 1 corresponde a "Acoustic Grand Piano"
@@ -122,7 +189,7 @@ export default class Player extends React.Component {
         var noteDelay:number = 0;
 
         commandList.forEach((command, idx) => {
-            if(isNaN(parseInt(command, 10)) == true) {
+            if(isNaN(parseInt(command, 10))) {
                 switch(command) {
                     case 'A':
                         noteWasPlayed = true;
@@ -208,7 +275,7 @@ export default class Player extends React.Component {
                         this.currentInstrument.name = this.instrumentList[20]
                         break
                     default:
-                        if(idx == 0) {
+                        if(idx === 0) {
                             notePlayed = 0
                             break
                         }

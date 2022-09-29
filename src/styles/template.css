@@ -80,6 +80,7 @@
 
 .key{
     width: 70px;
+    cursor:pointer;
     background-color: #505050;
     color: #fff;
     grid-area: t1;
@@ -88,8 +89,7 @@
     padding: 5px;
     margin-bottom: 5px;
     font-weight: bold;
-    border: none;
-    text-transform: uppercase;
+    border: none;    
 }
 
 .play-button{
