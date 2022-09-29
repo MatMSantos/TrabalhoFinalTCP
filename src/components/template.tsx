@@ -7,12 +7,12 @@ import Player from '../classes/player/index'
 import MIDI from 'midi.js'
 
 type TemplateState = {
-  text: string
+  userInputText: string
   instruction: string
   keyAction: string
 }
 export default class Template extends React.Component {
-  state: TemplateState = { text: '', instruction: 'Instruções dos comandos', keyAction: '' }
+  state: TemplateState = { userInputText: '', instruction: 'Instruções dos comandos', keyAction: '' }
 
   keys_top = [
     {
@@ -66,7 +66,7 @@ export default class Template extends React.Component {
     
   ]
 
-  keys_bottom = [
+  keys_middle = [
     {
       id: 1,
       text: 'A',
@@ -127,7 +127,52 @@ export default class Template extends React.Component {
       instruction: 'Troca o instrumento para o instrumento General MIDI #114 (Harpsichord)',
       action: 'U'
     },
-  ]  
+  ]
+
+  keys_bottom = [
+    {
+      id: 1,
+      text: 'a',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'a'
+    },
+    {
+      id: 2,
+      text: 'b',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'b'
+    },
+    {
+      id: 3,
+      text: 'c',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'c'
+    },
+    {
+      id: 4,
+      text: 'd',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'd'
+    },
+    {
+      id: 5,
+      text: 'e',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'e'
+    },
+    {
+      id: 6,
+      text: 'f',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'f'
+    },
+    {
+      id: 7,
+      text: 'g',
+      instruction: 'Repete a nota anterior se for uma nota válida',
+      action: 'g'
+    },    
+  ]
 
   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ text: event.target.value })
@@ -162,8 +207,8 @@ export default class Template extends React.Component {
   oddGenerator = (min: number, max: number) => String((Math.floor(Math.random() * ((max - min) / 2 + 1)) * 2 + min) + 1)
 
   render() {
-    const { text, instruction } = this.state;
-    const parser = new Parser(text)
+    const { userInputText, instruction } = this.state;
+    const parser = new Parser(userInputText)
     const player = new Player(this.props)
 
     return (
@@ -181,7 +226,7 @@ export default class Template extends React.Component {
           </div>
           <textarea
             className='text-area grow-two'
-            value={text}
+            value={userInputText}
             onChange={this.handleChange}
             placeholder="Escreva a sua melodia aqui"
             style={{ height: '300px' }}
@@ -211,14 +256,32 @@ export default class Template extends React.Component {
                 onMouseEnter={() => this.setState({ instruction: key.instruction })}
                 onClick={() => {
                   if (key.text === 'Par') {
-                    this.setState({ text: text.concat(this.pairGenerator(0, 10)) })
+                    this.setState({ userInputText: userInputText.concat(this.pairGenerator(0, 10)) })
                   } else if (key.text === 'Impar') {
-                    this.setState({ text: text.concat(this.oddGenerator(0, 10)) })
+                    this.setState({ userInputText: userInputText.concat(this.oddGenerator(0, 10)) })
                   } else {
-                    this.setState({ text: text.concat(key.action) })
+                    this.setState({ userInputText: userInputText.concat(key.action) })
                   }
                 }}
               >
+                {key.text}
+              </button>
+            );
+          })}
+        </div>
+        <div className='keyBoard'>
+          {this.keys_middle.map((key: {
+            id: number
+            instruction: string
+            action: string
+            text: string
+          }) => {
+            return (
+              <button
+                className='key'
+                key={key.id}
+                onMouseEnter={() => this.setState({ instruction: key.instruction })}
+                onClick={() => this.setState({ userInputText: userInputText.concat(key.action) })}>
                 {key.text}
               </button>
             );
@@ -236,7 +299,7 @@ export default class Template extends React.Component {
                 className='key'
                 key={key.id}
                 onMouseEnter={() => this.setState({ instruction: key.instruction })}
-                onClick={() => this.setState({ text: text.concat(key.action) })}>
+                onClick={() => this.setState({ userInputText: userInputText.concat(key.action) })}>
                 {key.text}
               </button>
             );

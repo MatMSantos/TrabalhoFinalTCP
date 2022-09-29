@@ -21,6 +21,12 @@ export default class App extends React.Component {
         MIDI.setVolume(0, 20);
         MIDI.noteOn(0, note, velocity, delay);
         MIDI.noteOff(0, note, delay + 0.75);
+
+        MIDI.player.addListener(function(data:any) {
+						if (data.message === 128) {
+						} else {
+						}
+				})
       }
     });
   }

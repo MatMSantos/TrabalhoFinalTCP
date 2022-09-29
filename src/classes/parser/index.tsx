@@ -1,13 +1,13 @@
 import React from "react";
 export default class Parser extends React.Component {
   
-  constructor(private str: string) {
-    super(str);
-    this.str = str;
+  constructor(private textToParse: string) {
+    super(textToParse);
+    this.textToParse = textToParse;
   }
 
   readCommands() {
-    var inputStringVectorized: string[] = this.str.split('')    
+    var inputStringVectorized: string[] = this.textToParse.split('')    
     return inputStringVectorized
   }
   
